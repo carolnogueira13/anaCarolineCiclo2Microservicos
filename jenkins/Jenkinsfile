@@ -14,7 +14,7 @@ pipeline {
                     def imageTag = "${appName}:${env.BUILD_ID}"
 
                     // Construir a imagem Docker
-                    sh "docker build -t ${imageTag} ."
+                    bat "docker build -t ${imageTag} ."
                 }
             }
         }
@@ -25,10 +25,10 @@ pipeline {
                     def appName = 'microservicos'
                     def imageTag = "${appName}:${env.BUILD_ID}"
                     // Parar e remover o container existente, se houver
-                    sh "docker stop ${appName} || true"
-                    sh "docker rm ${appName} || true"
+                    bat "docker stop ${appName} || true"
+                    bat "docker rm ${appName} || true"
                     // Executar o novo container
-                    sh "docker run -d --name ${appName} ${imageTag}"
+                    bat "docker run -d --name ${appName} ${imageTag}"
                 }
             }
         }
